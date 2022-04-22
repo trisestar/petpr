@@ -1,6 +1,13 @@
 spring:
   application:
-    name: web-client
+    name: webclient
+  config:
+    import: configserver:${SPRING_CONFIG_URI:http://localhost:8888/}
+  cloud:
+    config:
+      label: latest
+      name: webclient
+      profile: dev
 server:
   port: 8002
 eureka:

@@ -2,4 +2,5 @@ rootProject.name = 'petpr'
 include 'webclient'
 include 'service-discovery'
 include 'mainapp'
+include 'config-server'
 
