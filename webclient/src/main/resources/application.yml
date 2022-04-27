@@ -2,7 +2,7 @@ spring:
   application:
     name: webclient
   config:
-    import: configserver:${SPRING_CONFIG_URI:http://localhost:8888/}
+    import: optional:configserver:${SPRING_CONFIG_URI:http://localhost:8888/}
   cloud:
     config:
       label: latest
@@ -14,3 +14,17 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8000/eureka/
+test: testvalue
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      customer-service:
+        wait-duration-in-open-state: 10s
+        permitted-number-of-calls-in-half-open-state: 3
+        sliding-window-type: count-based
+        sliding-window-size: 3
+        minimum-number-of-calls: 3
+        slow-call-duration-threshold: 10s
+        slow-call-rate-threshold: 60
+        failure-rate-threshold: 60

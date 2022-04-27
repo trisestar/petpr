@@ -20,23 +20,19 @@ public class Controller {
     @Autowired
     private Webclient webclient;
 
-    @Value("${datasource-driver-class-name}")
+    @Value("${test}")
     private String propertyObj;
 
     @GetMapping("/")
-    public Mono get() {
+    public Mono<Object> get() {
         System.out.println("webclient called get " + LocalDateTime.now());
         return Mono.just(propertyObj);
     }
 
     @PostMapping("/webclient")
-    public Mono request(@RequestBody Map<String, Object> data) {
+    public Mono<Object> request(@RequestBody Map<String, Object> data) {
         System.out.println("webclient called post " + LocalDateTime.now());
-        if (data.get("internal").equals(true)) {
-            return webclient.executeInternal(data);
-        } else {
-            return webclient.executeExternal(data);
-        }
+        return webclient.execute(data);
     }
 
 }
