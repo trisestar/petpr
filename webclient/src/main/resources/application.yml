@@ -16,6 +16,12 @@ eureka:
       defaultZone: http://localhost:8000/eureka/
 test: testvalue
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
+
 resilience4j:
   circuitbreaker:
     instances:

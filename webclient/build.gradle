@@ -19,6 +19,7 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-reactor-resilience4j:2.0.1'
     implementation 'io.projectreactor.addons:reactor-adapter:3.4.3'
 
+    implementation 'org.springframework.boot:spring-boot-actuator:2.4.3'
 
     implementation 'com.google.code.gson:gson:2.8.8'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'

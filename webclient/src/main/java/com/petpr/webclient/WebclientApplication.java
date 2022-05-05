@@ -21,20 +21,6 @@ public class WebclientApplication {
         SpringApplication.run(WebclientApplication.class, args);
     }
 
-    @Bean
-    public Customizer<ReactiveResilience4JCircuitBreakerFactory> defaultCustomizer() {
-        CircuitBreakerRegistry cbr = CircuitBreakerRegistry.ofDefaults();
-        return factory -> {
-            factory.configureDefault(id -> new Resilience4JConfigBuilder(id)
-                    .circuitBreakerConfig(CircuitBreakerConfig.ofDefaults())
-                    .timeLimiterConfig(TimeLimiterConfig.custom().timeoutDuration(Duration.ofSeconds(3)).build())
-                    .circuitBreakerConfig(CircuitBreakerConfig.custom()
-                            .failureRateThreshold(50)
-                            .minimumNumberOfCalls(5)
-                            .slidingWindowType(CircuitBreakerConfig.SlidingWindowType.COUNT_BASED)
-                            .slidingWindowSize(5)
-                            .build()).build());
-        };
-    }
+
 
 }

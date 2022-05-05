@@ -14,3 +14,8 @@ spring:
         jdbc:
           order: 0
           sql: SELECT key, value FROM "configSchema".properties WHERE application = ? AND profile = ? AND label = ?;
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
