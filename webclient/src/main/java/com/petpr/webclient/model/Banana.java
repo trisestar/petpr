@@ -1,7 +1,7 @@
 package com.petpr.webclient.model;
 
 public class Banana {
-    String size;
+    String size = "";
 
     public String getSize() {
         return size;

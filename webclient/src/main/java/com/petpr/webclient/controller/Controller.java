@@ -1,5 +1,6 @@
 package com.petpr.webclient.controller;
 
+import com.google.gson.Gson;
 import com.petpr.webclient.Webclient;
 import com.petpr.webclient.config.Config;
 import com.petpr.webclient.model.Banana;
@@ -14,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.Map;
 
@@ -67,6 +71,17 @@ public class Controller {
         beanFactory.destroyBean(Banana.class);
 
         return Mono.just(1);
+    }
+
+    @PostMapping("/readFile")
+    public Mono<Object> readFile(@RequestBody String path) throws IOException {
+        Banana banana = new Banana();
+        Files.readAllLines(Path.of(path)).forEach(val -> {
+            banana.setSize(banana.getSize() + val + '\n');
+        });
+        Gson gson = new Gson();
+        Map res = gson.fromJson(banana.getSize(), Map.class);
+        return Mono.just(res);
     }
 
 }

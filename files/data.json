@@ -1,0 +1,7 @@
+{
+  "runtime-server": {
+    "path": "/pets/**",
+    "method": "POST",
+    "route": "lb://runtime-server"
+  }
+}
